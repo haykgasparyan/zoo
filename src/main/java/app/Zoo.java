@@ -32,21 +32,25 @@ public class Zoo {
 
 		List<Animal> animals = Arrays.asList(dog1, dog2, dog3, parrot1, parrot2, chicken1, chicken2);
 
+		log.info("Dog 1 making and losing relationships");
 		animalService.makeFriends(dog1, animals);
 		animalService.loseFriend(dog1);
-		log.info("*****************");
+		log.info("Dog 2 making and losing relationships");
 		animalService.makeFriends(dog2, animals);
 		animalService.loseFriend(dog2);
+		log.info("Dog 3 making and losing relationships");
 		animalService.makeFriends(dog3, animals);
 		animalService.loseFriend(dog3);
-		log.info("*****************");
+		log.info("Parrot 1 making and losing relationships");
 		animalService.makeFriends(parrot1, animals);
 		animalService.loseFriend(parrot1);
+		log.info("Parrot 2 making and losing relationships");
 		animalService.makeFriends(parrot2, animals);
 		animalService.loseFriend(parrot2);
-		log.info("*****************");
+		log.info("Chicken 1 making and losing relationships");
 		animalService.makeFriends(chicken1, animals);
 		animalService.loseFriend(chicken1);
+		log.info("Chicken 2 making and losing relationships");
 		animalService.makeFriends(chicken2, animals);
 		animalService.loseFriend(chicken2);
 

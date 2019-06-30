@@ -87,8 +87,7 @@ public class AnimalServiceImpl implements IAnimalService {
 		animal.setFriendList(newFriends);
 		for (int i = 0; i < newFriends.size(); i++) {
 			newFriends.get(i).setFriendList(Arrays.asList(animal));
-			log.info(animal.getAnimalType() + " " + Constants.HAS_ESTABLISHED_FRIENDSHIP
-					+ newFriends.get(i).getName());
+			log.info(animal.getAnimalType() + " " + Constants.HAS_ESTABLISHED_FRIENDSHIP + newFriends.get(i).getName());
 			log.info(newFriends.get(i).getAnimalType() + " " + newFriends.get(i).getName() + " "
 					+ Constants.HAS_ESTABLISHED_FRIENDSHIP + animal.getName());
 		}
@@ -100,14 +99,14 @@ public class AnimalServiceImpl implements IAnimalService {
 	 * @param dog
 	 */
 	private void unfriendAnimals(Animal animal) {
-		List<Animal> friendList = animal.getFriendList();
-		List<Animal> friendToUnfriend = ZooUtils.getRandomAnimal(friendList);
+		Collection<Animal> friendList = animal.getFriendList().stream().filter(e -> !e.equals(animal))
+				.collect(Collectors.toList());
+		List<Animal> friendToUnfriend = ZooUtils.getRandomAnimal((List<Animal>) friendList);
 		for (int i = 0; i < friendToUnfriend.size(); i++) {
 			friendList.remove(friendToUnfriend.get(i));
-			log.info(animal.getAnimalType() + " " + Constants.HAS_LOST_FRIENDSHIP
-					+ friendToUnfriend.get(i).getName());
+			log.info(animal.getAnimalType() + " " + Constants.HAS_LOST_FRIENDSHIP + friendToUnfriend.get(i).getName());
 		}
-		animal.setFriendList(friendList);
+		animal.setFriendList((List<Animal>) friendList);
 	}
 
 }
